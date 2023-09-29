@@ -13,10 +13,10 @@ public class Product {
     private int useDiscount;
     private List<Product> products;
     // Date
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    private LocalDate localDate = LocalDate.now();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    LocalDate localDate = LocalDate.now();
     private Date date = new Date();
-    private String dateAdded = simpleDateFormat.format(date);
+    String dateAdded = simpleDateFormat.format(date);
     public Product(List<Product> products) {
         this.products = products;
     }
@@ -28,7 +28,7 @@ public class Product {
         this.useDiscount = useDiscount;
     }
 
-    public List<Product> getProductsByBookCategory() {
+    public List<Product> productsByBookCategory() {
         // Sort the list by price and category
          return products.stream()
                 .filter(p -> p.getType().equals("Book") && p.getPrice() > 250)
@@ -58,14 +58,14 @@ public class Product {
                 .stream().toList();
     }
 
-    public List<Product> getLastAddedProducts() {
+    public List<Product> lastAddedProducts() {
         // Three last elements
         return products.stream()
                 .limit(3)
                 .toList();
     }
 
-    public List<Product> getFreshAndInexpensiveGoods() {
+    public List<Product> freshAndInexpensiveGoods() {
         // Fresh and inexpensive goods
         return products.stream()
                 .filter(p -> p.localDate.getYear() == LocalDate.now().getYear())
@@ -74,7 +74,7 @@ public class Product {
                 .toList();
     }
 
-    public int getFreshAndInexpensiveGoodsSum() {
+    public int freshAndInexpensiveGoodsSum() {
         // Fresh and inexpensive goods sum
         return products.stream()
                 .filter(p -> p.localDate.getYear() == LocalDate.now().getYear())

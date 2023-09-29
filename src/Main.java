@@ -17,7 +17,7 @@ public class Main {
         Product product = new Product(products);
 
         System.out.println("Type" + " | " + "Name" + " | " + "Price");
-        product.getProductsByBookCategory().forEach(p -> System.out.println(p.getType() + " | " + p.getProductName() + " | " + p.getPrice()));
+        product.productsByBookCategory().forEach(p -> System.out.println(p.getType() + " | " + p.getProductName() + " | " + p.getPrice()));
 
         System.out.println("=============");
         System.out.println("Type" + " | " + "Name" + " | " + "Price" + " | " + "Discount");
@@ -33,13 +33,13 @@ public class Main {
 
         System.out.println("=============");
         System.out.println("Type" + " | " + "Name" + " | " + "Price" + " | " + "Discount" + " | " + "Date");
-        product.getLastAddedProducts().forEach(p -> System.out.println(p.getType() + " | " + p.getProductName() + " | " + p.getPrice() + " | " + p.getUseDiscount() + " | " + p.getDateAdded()));
+        product.lastAddedProducts().forEach(p -> System.out.println(p.getType() + " | " + p.getProductName() + " | " + p.getPrice() + " | " + p.getUseDiscount() + " | " + p.getDateAdded()));
 
         System.out.println("=============");
         System.out.println("Type" + " | " + "Name" + " | " + "Price" + " | " + "Discount" + " | " + "Date");
-        product.getFreshAndInexpensiveGoods().forEach(p -> System.out.println(p.getType() + " | " + p.getProductName() + " | " + p.getPrice() + " | " + p.getUseDiscount() + " | " + p.getDateAdded()));
+        product.freshAndInexpensiveGoods().forEach(p -> System.out.println(p.getType() + " | " + p.getProductName() + " | " + p.getPrice() + " | " + p.getUseDiscount() + " | " + p.getDateAdded()));
 
-        System.out.println("Sum of the cheapest products: " + product.getFreshAndInexpensiveGoodsSum());
+        System.out.println("Sum of the cheapest products: " + product.freshAndInexpensiveGoodsSum());
 
         System.out.println("\n");
         product.sortByCategory().forEach((k, v) -> {
