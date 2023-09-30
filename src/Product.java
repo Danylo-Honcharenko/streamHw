@@ -13,10 +13,10 @@ public class Product {
     private int useDiscount;
     private List<Product> products;
     // Date
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    LocalDate localDate = LocalDate.now();
+    SimpleDateFormat changeTimeFormat = new SimpleDateFormat("dd-MM-yyyy");
+    LocalDate currentTime = LocalDate.now();
     private Date date = new Date();
-    String dateAdded = simpleDateFormat.format(date);
+    String dateAdded = changeTimeFormat.format(date);
     public Product(List<Product> products) {
         this.products = products;
     }
@@ -61,6 +61,7 @@ public class Product {
     public List<Product> lastAddedProducts() {
         // Three last elements
         return products.stream()
+                .sorted(Comparator.comparing(Product::getDateAdded))
                 .limit(3)
                 .toList();
     }
@@ -68,7 +69,7 @@ public class Product {
     public List<Product> freshAndInexpensiveGoods() {
         // Fresh and inexpensive goods
         return products.stream()
-                .filter(p -> p.localDate.getYear() == LocalDate.now().getYear())
+                .filter(p -> p.currentTime.getYear() == LocalDate.now().getYear())
                 .filter(p -> p.getType().equals("Book"))
                 .filter(p -> p.getPrice() < 75)
                 .toList();
@@ -77,7 +78,7 @@ public class Product {
     public int freshAndInexpensiveGoodsSum() {
         // Fresh and inexpensive goods sum
         return products.stream()
-                .filter(p -> p.localDate.getYear() == LocalDate.now().getYear())
+                .filter(p -> p.currentTime.getYear() == LocalDate.now().getYear())
                 .filter(p -> p.getType().equals("Book"))
                 .filter(p -> p.getPrice() < 75)
                 .mapToInt(Product::getPrice)
